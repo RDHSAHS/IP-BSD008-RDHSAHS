@@ -4,25 +4,53 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Pet extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Pet.belongsTo(models.User, { foreignKey: "UserId" })
+      Pet.belongsTo(models.Species, { foreignKey: "SpeciesId" })
     }
   }
   Pet.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: `Name must be filled`
+        },
+        notNull: {
+          msg: `Name must be filled`
+        },
+      },
+    },
     about: DataTypes.TEXT,
     breed: DataTypes.STRING,
     color: DataTypes.STRING,
-    gender: DataTypes.STRING,
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: `Gender must be filled`
+        },
+        notNull: {
+          msg: `Gender must be filled`
+        },
+      },
+    },
     age: DataTypes.STRING,
+    adoptionFee: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
     imageUrl: DataTypes.STRING,
-    SpeciesId: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER
+    SpeciesId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     sequelize,
     modelName: 'Pet',
