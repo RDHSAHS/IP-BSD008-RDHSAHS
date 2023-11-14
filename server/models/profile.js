@@ -4,21 +4,49 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Profile extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      Profile.belongsTo(models.Users, { foreignKey: "UserId" })
     }
   }
   Profile.init({
-    fullName: DataTypes.STRING,
-    address: DataTypes.STRING,
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: `Please fill your name`
+        },
+        notNull: {
+          msg: `Please fill your name`
+        },
+      },
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: `Please fill your address`
+        },
+        notNull: {
+          msg: `Please fill your address`
+        },
+      },
+    },
     phoneNumber: DataTypes.STRING,
     profilePicture: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: `UserId must be filled`
+        },
+        notNull: {
+          msg: `UserId must be filled`
+        },
+      },
+    },
   }, {
     sequelize,
     modelName: 'Profile',
