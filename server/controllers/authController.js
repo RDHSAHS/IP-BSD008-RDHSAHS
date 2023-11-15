@@ -22,6 +22,7 @@ class AuthController {
           username: payload.name,
           email: payload.email,
           password: "password_google",
+          role: "User",
         },
         hooks: false,
       })

@@ -1,7 +1,7 @@
 import axios from "axios"
 import { GoogleLogin } from "@react-oauth/google"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { URL } from "../configs/config"
 import Button from "../components/Button"
 
@@ -54,16 +54,16 @@ const LoginPage = () => {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-r from-green-100 to-green-300 py-6 flex flex-col justify-center sm:py-12">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div className="relative py-3 sm:max-w-xl sm:mx-auto w-[50rem]">
           <div
             className="absolute shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl shadow-xl shadow-[#00D9EC]">
           </div>
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20 shadow-xl shadow-[#374f2f]">
             <div className="max-w-md mx-auto ">
               <div>
-                <h1 className="text-2xl font-semibold">Login</h1>
+                <h1 className="text-3xl font-semibold">Login</h1>
               </div>
-              <div className="divide-y divide-gray-200">
+              <div className="divide-y divide-gray-100">
                 <form
                   className="space-y-4 md:space-y-6"
                   onSubmit={onSubmitHandler}
@@ -92,9 +92,20 @@ const LoginPage = () => {
                     </div>
                   </div>
                 </form>
-                <div>
-                  <h1>Login with Google Account</h1>
-                  <GoogleLogin onSuccess={googleLogin} />
+                <div className="flex flex-col flex-center gap-4 items-center">
+                  <div className="flex flex-row mt-[1rem]">
+                    <div className="m-1">
+                      <GoogleLogin onSuccess={googleLogin} />
+                    </div>
+                    <div className="m-1">
+                      <GoogleLogin onSuccess={googleLogin} />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-4 items-end self-end">
+                    <Link to={"/register"} className="text-xl text-zinc-500">
+                      <h1>Register</h1>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
