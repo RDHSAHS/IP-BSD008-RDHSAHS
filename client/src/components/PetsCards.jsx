@@ -18,10 +18,11 @@ const PetCards = () => {
       try {
         setLoading(true)
         const { data } = await PET_API.get("/petFinder")
-        console.log(data.data.animals[0].photos[0].full, "<<<<<<<<");
         setPets(data.data.animals)
+        console.log(data.data.animals)
       } catch (err) {
         console.error(err);
+        setError(err)
       } finally {
         setLoading(false)
       }
@@ -29,7 +30,9 @@ const PetCards = () => {
     fetchPets()
   }, [])
 
-  //handle petOnClick
+  const onClickHandler = (id) => {
+    navigate(`/petDetails/${id}`)
+  }
 
   if (loading) return <p>LOADING~</p>
   if (error) return <p>Error Fetching Pet Data .... </p>
@@ -37,20 +40,20 @@ const PetCards = () => {
   return (
     <>
       {pets.map((pet) => (
-        <div key={pet.id} className="block rounded-lg bg-white dark:bg-neutral-700 mx-[1rem] my-[1rem]">
-          <h1>{pet.name}</h1>
+        <div key={pet.id} className="block rounded-full bg-white dark:bg-neutral-700 mx-[1rem] my-[1rem]">
           <div
-            className="rounded-lg relative bg-cover bg-no-repeat flex justify-center hover:bg-[rgba(0,225,245,0.33)] transition-all duration-300"
+            className="rounded-full relative bg-cover bg-no-repeat flex justify-center hover:bg-[rgba(0,225,245,0.33)] transition-all duration-300"
             data-te-ripple-init
             data-te-ripple-color="light"
           >
             <img
-              className="rounded-t-lg h-[33rem]"
-              src={pet.photos[0]?.full || ''} //here
-              alt="PetPhotoHere"
-            // onClick={() => {
-            //   handleWatchClick(watch.id)
-            // }}
+              className="rounded-full h-[30rem] w-[33rem] object-cover"
+              src={pet.photos[0]?.full || 'https://png.pngtree.com/png-vector/20230726/ourmid/pngtree-vector-dog-paw-icon-paw-print-paw-with-water-and-clouds-png-image_6746192.png'}
+              alt={`${pet.name}'s photo`}
+
+              onClick={() => {
+                onClickHandler(pet.id)
+              }}
             />
           </div>
         </div>

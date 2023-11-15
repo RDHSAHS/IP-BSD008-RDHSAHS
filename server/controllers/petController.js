@@ -58,6 +58,29 @@ class PetController {
       next(err)
     }
   }
+
+  static async petFinderById(req, res, next) {
+    let petFinderToken = null
+    const { id } = req.params
+    try {
+      if (!petFinderToken) {
+        petFinderToken = await fetchTokenPetFinder()
+      }
+
+      const { data } = await axios.get(`https://api.petfinder.com/v2/animals/${id}`, {
+        headers: {
+          Authorization: `Bearer ${petFinderToken}`
+        }
+      })
+      res.status(200).json({
+        status: 200,
+        data: data
+      })
+    } catch (err) {
+      console.error(err);
+      next(err)
+    }
+  }
 }
 
 module.exports = PetController

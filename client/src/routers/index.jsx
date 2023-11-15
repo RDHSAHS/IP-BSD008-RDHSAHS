@@ -3,6 +3,7 @@ import LoginPage from "../pages/LoginPage";
 import BaseLayout from "../layouts/BaseLayout";
 import LandingPage from "../pages/LandingPage";
 import RegisterPage from "../pages/RegisterPage";
+import PetDetails from "../pages/PetDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <LandingPage />
+      },
+      {
+        path: "/petDetails/:id",
+        element: <PetDetails />
       },
     ]
   },

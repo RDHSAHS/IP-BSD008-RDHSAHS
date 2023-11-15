@@ -1,3 +1,4 @@
+import Navbar from "../components/Navbar"
 import PetCards from "../components/PetsCards"
 
 const LandingPage = () => {

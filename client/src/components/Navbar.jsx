@@ -154,6 +154,10 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
+          {/* * <!-- LOGOUT --> * */}
+          <div>
+            <button onClick={logoutHandler}>LOGOUT</button>
+          </div>
         </div>
       </nav>
       {/* <!-- LINE --> */}
