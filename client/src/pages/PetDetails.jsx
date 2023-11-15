@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import CatImage from "../components/CatImage"
 
 const BASE_URL = "http://localhost:3000/pets"
 const PET_API = axios.create({
@@ -31,7 +32,7 @@ const PetDetails = () => {
     fetchPet()
   }, [])
 
-  if (loading) return <p>LOADING~</p>
+  if (loading) return <CatImage />
   if (error) return <p>Error Fetching Pet Data .... </p>
 
   return (

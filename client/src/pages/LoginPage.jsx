@@ -12,6 +12,7 @@ const LoginPage = () => {
     email: "",
     password: "",
   })
+  const [statusCode, setStatusCode] = useState(null);
   const navigate = useNavigate()
 
   const onChangeHandler = (e) => {
@@ -27,25 +28,34 @@ const LoginPage = () => {
     try {
       e.preventDefault()
 
-      const { data } = await axios.post(`${BASE_URL}/user/login`, loginInput)
-
+      const response = await axios.post(`${BASE_URL}/user/login`, loginInput)
+      const { data, status } = response
+      setStatusCode(status)
       localStorage.setItem("access_token", data.access_token)
 
-      navigate("/")
+      setTimeout(() => {
+        setStatusCode(null)
+        navigate("/")
+      }, 1500)
     } catch (err) {
       console.error(err);
+      setStatusCode(500)
     }
   }
 
   async function googleLogin(codeResponse) {
     try {
-      const { data } = await axios.post(`${BASE_URL}/user/google-login`, null, {
+      const { data, status } = await axios.post(`${BASE_URL}/user/google-login`, null, {
         headers: {
           token: codeResponse.credential
         },
       })
+      setStatusCode(status)
       localStorage.setItem("access_token", data)
-      navigate("/")
+      setTimeout(() => {
+        setStatusCode(null)
+        navigate("/")
+      }, 1500)
     } catch (err) {
       console.error(err);
     }
@@ -92,6 +102,16 @@ const LoginPage = () => {
                     </div>
                   </div>
                 </form>
+                {statusCode && (
+                  <div>
+                    <p>Status Code: {statusCode}</p>
+                    <img
+                      src={`https://http.cat/${statusCode}`}
+                      alt={`Cat for status code ${statusCode}`}
+                      style={{ width: 'auto', height: 'auto' }}
+                    />
+                  </div>
+                )}
                 <div className="flex flex-col flex-center gap-4 items-center">
                   <div className="flex flex-row mt-[1rem]">
                     <div className="m-1">

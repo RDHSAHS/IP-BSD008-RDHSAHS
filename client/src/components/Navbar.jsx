@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 const Navbar = () => {
   const navigate = useNavigate()
-
+  const logStatus = localStorage.getItem("access_token")
   function logoutHandler() {
     localStorage.clear()
     googleLogout()
@@ -154,10 +154,15 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          {/* * <!-- LOGOUT --> * */}
+          {/* * <!-- LOGINOUT --> * */}
           <div>
-            <button onClick={logoutHandler}>LOGOUT</button>
+            {logStatus ? (
+              <button onClick={logoutHandler}>LOGOUT</button>
+            ) : (
+              <Link to={"/login"}>LOGIN</Link>
+            )}
           </div>
+
         </div>
       </nav>
       {/* <!-- LINE --> */}
