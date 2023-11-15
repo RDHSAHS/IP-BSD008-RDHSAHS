@@ -1,3 +1,5 @@
+const { verivyHash } = require("../helpers/bcryptjs");
+const { signToken } = require("../helpers/jwt");
 const { User } = require("../models")
 
 class UserController {
@@ -24,8 +26,6 @@ class UserController {
 
       res.status(200).json({
         access_token: token,
-        email: user.email,
-        role: user.role,
       });
     } catch (err) {
       console.error(err);
