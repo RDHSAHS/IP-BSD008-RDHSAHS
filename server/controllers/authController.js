@@ -29,6 +29,7 @@ class AuthController {
       res.status(200).json(access_token)
     } catch (err) {
       console.error(err);
+      next(err)
     }
   }
 }

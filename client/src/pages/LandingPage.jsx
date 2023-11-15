@@ -1,7 +1,13 @@
+import PetCards from "../components/PetsCards"
+
 const LandingPage = () => {
   return (
     <>
-      <h1>This is landing page</h1>
+      <div className="flex">
+        <div id="card-box" className="mx-[2rem] my-[3rem] grid grid-cols-3 gap-7">
+          <PetCards />
+        </div>
+      </div>
     </>
   )
 }
