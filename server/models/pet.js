@@ -43,6 +43,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0,
     },
     imageUrl: DataTypes.STRING,
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "adoptable"
+    },
     SpeciesId: {
       type: DataTypes.INTEGER,
       allowNull: false,

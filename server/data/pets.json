@@ -7,6 +7,7 @@
     "gender": "Male",
     "age": "Adult",
     "adoptionFee": 100000,
+    "status": "adoptable",
     "imageUrl": "https://rawznaturalpetfood.com/wp-content/uploads/tuxedo-cats.jpg",
     "SpeciesId": "1",
     "UserId": "1"
@@ -19,6 +20,7 @@
     "gender": "Male",
     "age": "Young",
     "adoptionFee": 200000,
+    "status": "adoptable",
     "imageUrl": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/69371431/1/?bust=1699783892&width=720",
     "SpeciesId": "2",
     "UserId": "1"
@@ -31,6 +33,7 @@
     "gender": "Male",
     "age": "Adult",
     "adoptionFee": 0,
+    "status": "adoptable",
     "imageUrl": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/64839196/1/?bust=1685812905&width=720",
     "SpeciesId": "3",
     "UserId": "1"
@@ -43,6 +46,7 @@
     "gender": "Male",
     "age": "Adult",
     "adoptionFee": 100000,
+    "status": "adoptable",
     "imageUrl": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/69312044/1/?bust=1699906788&width=720",
     "SpeciesId": "4",
     "UserId": "1"
@@ -55,6 +59,7 @@
     "gender": "Female",
     "age": "Senior",
     "adoptionFee": 2500000,
+    "status": "adoptable",
     "imageUrl": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/59305832/3/?bust=1672449701&width=720",
     "SpeciesId": "5",
     "UserId": "1"
@@ -67,6 +72,7 @@
     "gender": "Male",
     "age": "Adult",
     "adoptionFee": 0,
+    "status": "adoptable",
     "imageUrl": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/63852887/2/?bust=1693967921&width=720",
     "SpeciesId": "6",
     "UserId": "1"
@@ -79,6 +85,7 @@
     "gender": "Female",
     "age": "Young",
     "adoptionFee": 300000,
+    "status": "adoptable",
     "imageUrl": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/69608147/3/?bust=1699474290&width=720",
     "SpeciesId": "7",
     "UserId": "1"
@@ -91,6 +98,7 @@
     "gender": "Female",
     "age": "Adult",
     "adoptionFee": 500000,
+    "status": "adoptable",
     "imageUrl": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/53086821/2/?bust=1632582206&width=720",
     "SpeciesId": "8",
     "UserId": "1"

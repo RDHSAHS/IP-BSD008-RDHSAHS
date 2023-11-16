@@ -5,5 +5,7 @@ const petRouter = require("express").Router()
 petRouter.get("/", PetController.pets)
 petRouter.get("/petFinder", PetController.petFinder)
 petRouter.get("/petFinder/:id", PetController.petFinderById)
+petRouter.get("/petLocal/:id", PetController.petLocalById)
+petRouter.patch("/petLocal/:id", PetController.adopted)
 
 module.exports = petRouter

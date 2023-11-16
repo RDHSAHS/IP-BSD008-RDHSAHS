@@ -33,6 +33,10 @@ module.exports = {
       imageUrl: {
         type: Sequelize.STRING,
       },
+      status: {
+        type: Sequelize.STRING,
+        defaultValue: "adoptable",
+      },
       SpeciesId: {
         type: Sequelize.INTEGER,
         allowNull: false,
