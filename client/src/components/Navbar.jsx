@@ -9,7 +9,7 @@ const Navbar = () => {
   function logoutHandler() {
     localStorage.clear()
     googleLogout()
-    navigate("/login")
+    navigate("/")
   }
   return (
     <>
