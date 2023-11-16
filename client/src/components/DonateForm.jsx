@@ -35,13 +35,23 @@ function DonateForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Amount:
-        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+    <form onSubmit={handleSubmit} className="flex items-center space-x-4">
+      <label className="flex items-center">
+        <span className="mr-2 text-black ">$</span>
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          className="border border-gray-300 p-2 w-24 text-center"
+        />
       </label>
-      <CardElement />
-      <button type="submit">Donate</button>
+      <CardElement className="border border-gray-300 p-2 w-64" />
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+      >
+        Donate
+      </button>
     </form>
   );
 }
