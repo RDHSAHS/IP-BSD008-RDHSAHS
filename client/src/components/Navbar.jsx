@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 const Navbar = () => {
   const navigate = useNavigate()
-
+  const logStatus = localStorage.getItem("access_token")
   function logoutHandler() {
     localStorage.clear()
     googleLogout()
@@ -12,16 +12,6 @@ const Navbar = () => {
   return (
     <>
       <nav className="z-[1000] flex w-full flex-wrap justify-items-center items-center bg-[#82c9cd] py-2 h-[5rem] stick top-0" >
-        {/* <!-- LOGO/HOME --> */}
-        <div className="h-[5rem]">
-          <Link to={"/"}><img
-            src="https://png.pngtree.com/png-vector/20230726/ourmid/pngtree-vector-dog-paw-icon-paw-print-paw-with-water-and-clouds-png-image_6746192.png"
-            alt="Hooman"
-            loading="lazy"
-            className="h-[100%]"
-          />
-          </Link>
-        </div>
         {/* <!-- EMPTY SPACE --> */}
         <div className="flex w-[30%] items-center justify-start">
           <Link to={"/"}><p
@@ -154,10 +144,15 @@ const Navbar = () => {
               </span>
             </Link>
           </div>
-          {/* * <!-- LOGOUT --> * */}
+          {/* * <!-- LOGINOUT --> * */}
           <div>
-            <button onClick={logoutHandler}>LOGOUT</button>
+            {logStatus ? (
+              <button onClick={logoutHandler}>LOGOUT</button>
+            ) : (
+              <Link to={"/login"}>LOGIN</Link>
+            )}
           </div>
+
         </div>
       </nav>
       {/* <!-- LINE --> */}

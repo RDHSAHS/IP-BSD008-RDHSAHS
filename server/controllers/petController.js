@@ -81,6 +81,56 @@ class PetController {
       next(err)
     }
   }
+
+  static async petLocalById(req, res, next) {
+    const { id } = req.params
+    try {
+      let petFound = await Pet.findByPk(id)
+      if (!petFound) throw new Error("PetNotFound")
+      res.status(200).json({
+        status: 200,
+        data: petFound
+      })
+    } catch (err) {
+      console.error(err);
+      next(err)
+    }
+  }
+
+  static async adopted(req, res, next) {
+    const { id } = req.params
+    try {
+      let petFound = await Pet.findByPk(id)
+      if (!petFound) throw new Error("PetNotFound")
+
+      await Pet.update({ status: "adopted" }, { where: { id } })
+
+      res.status(200).json({
+        message: `Pet adopted`,
+        data: petFound
+      })
+    } catch (err) {
+      console.error(err);
+      next(err)
+    }
+  }
+  static async deletePet(req, res, next) {
+    const { id } = req.params
+    try {
+      let petFound = await Pet.findByPk(id)
+      if (!petFound) throw new Error("PetNotFound")
+
+      await Pet.destroy({ where: { id } })
+
+      res.status(200).json({
+        message: `Pet removed from database`,
+        data: petFound
+      })
+    } catch (err) {
+      console.error(err);
+      next(err)
+    }
+  }
 }
 
 module.exports = PetController

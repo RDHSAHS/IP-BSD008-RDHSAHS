@@ -1,15 +1,12 @@
-import Navbar from "../components/Navbar"
+import DonateForm from "../components/DonateForm"
 import PetCards from "../components/PetsCards"
 
 const LandingPage = () => {
   return (
-    <>
-      <div className="flex">
-        <div id="card-box" className="mx-[2rem] my-[3rem] grid grid-cols-3 gap-7">
-          <PetCards />
-        </div>
-      </div>
-    </>
+    <div className="bg-[#82c9cd] h-full">
+      <PetCards />
+      <DonateForm />
+    </div>
   )
 }
 
