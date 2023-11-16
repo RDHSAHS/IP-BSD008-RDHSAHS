@@ -1,6 +1,6 @@
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { URL } from "../configs/config"
 import Button from "../components/Button"
 
@@ -12,6 +12,8 @@ const RegisterPage = () => {
     email: "",
     password: "",
   })
+  const [error, setError] = useState(null)
+  const [statusCode, setStatusCode] = useState(null);
   const navigate = useNavigate()
 
   const onChangeHandler = (e) => {
@@ -23,15 +25,32 @@ const RegisterPage = () => {
     })
   }
 
+  useEffect(() => {
+    if (statusCode) {
+      const timeoutId = setTimeout(() => {
+        setStatusCode(null);
+      }, 3000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [statusCode]);
+
   const onSubmitHandler = async (e) => {
     try {
       e.preventDefault()
 
-      const { data } = await axios.post(`${BASE_URL}/user/register`, registerInput)
+      const { data, status } = await axios.post(`${BASE_URL}/user/register`, registerInput)
+      setStatusCode(status)
 
-      navigate("/login")
+      setTimeout(() => {
+        setStatusCode(null)
+        navigate("/")
+      }, 1500)
+
     } catch (err) {
       console.error(err);
+      setError(err.response?.data?.message || `An error occured`)
+      setStatusCode(err.response?.status || 500)
     }
   }
 
@@ -85,6 +104,17 @@ const RegisterPage = () => {
                     </div>
                   </div>
                 </form>
+                {statusCode && (
+                  <div>
+                    <p>Status Code: {statusCode}</p>
+                    <img
+                      src={`https://http.cat/${statusCode}`}
+                      alt={`Cat for status code ${statusCode}`}
+                      style={{ width: 'auto', height: 'auto' }}
+                    />
+                    <p>{error}</p>
+                  </div>
+                )}
                 <div className="flex flex-col gap-4 items-end self-end">
                   <Link to={"/login"} className="text-xl text-zinc-500 mt-[1rem]">
                     <h1>Login</h1>

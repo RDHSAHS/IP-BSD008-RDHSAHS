@@ -1,6 +1,6 @@
 import axios from "axios"
 import { GoogleLogin } from "@react-oauth/google"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { URL } from "../configs/config"
 import Button from "../components/Button"
@@ -12,6 +12,7 @@ const LoginPage = () => {
     email: "",
     password: "",
   })
+  const [error, setError] = useState(null)
   const [statusCode, setStatusCode] = useState(null);
   const navigate = useNavigate()
 
@@ -23,6 +24,17 @@ const LoginPage = () => {
       [e.target.name]: inputs,
     })
   }
+
+  useEffect(() => {
+    if (statusCode) {
+      const timeoutId = setTimeout(() => {
+        setStatusCode(null);
+      }, 3000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [statusCode]);
+
 
   const onSubmitHandler = async (e) => {
     try {
@@ -37,9 +49,11 @@ const LoginPage = () => {
         setStatusCode(null)
         navigate("/")
       }, 1500)
+
     } catch (err) {
       console.error(err);
-      setStatusCode(500)
+      setError(err.response?.data?.message || `An error occured`)
+      setStatusCode(err.response?.status || 500)
     }
   }
 
@@ -58,6 +72,8 @@ const LoginPage = () => {
       }, 1500)
     } catch (err) {
       console.error(err);
+      setError(err.response?.data?.message || `An error occured`)
+      setStatusCode(err.response?.status || 500)
     }
   }
 
@@ -110,6 +126,7 @@ const LoginPage = () => {
                       alt={`Cat for status code ${statusCode}`}
                       style={{ width: 'auto', height: 'auto' }}
                     />
+                    <p>{error}</p>
                   </div>
                 )}
                 <div className="flex flex-col flex-center gap-4 items-center">
