@@ -12,7 +12,7 @@ const PetDetails = () => {
   const { id } = useParams()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [pet, setPet] = useState({})
+  // const [pet, setPet] = useState({})
   const [localPet, setLocalPet] = useState({})
   const [adopted, setAdopted] = useState("adoptable")
   const navigate = useNavigate()
@@ -42,6 +42,8 @@ const PetDetails = () => {
   const adoptHandler = async () => {
     try {
       await PET_API.patch(`/petLocal/${id}`, { adopted: true })
+      setAdopted("adopted")
+      await PET_API.delete(`/petLocal/${id}`)
       navigate("/")
     } catch (err) {
       console.error(err);
