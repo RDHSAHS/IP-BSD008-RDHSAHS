@@ -24,13 +24,12 @@ const Navbar = () => {
       ...inputSearch,
       [key]: value
     })
+  }
 
-    const searchSubmitHandler = (e) => {
-      e.preventDefault()
+  const searchSubmitHandler = (e) => {
+    e.preventDefault()
 
-      navigate(`${inputSearch}`)
-    }
-
+    navigate(`${inputSearch}`)
   }
 
   return (
