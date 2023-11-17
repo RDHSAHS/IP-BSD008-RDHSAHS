@@ -6,9 +6,9 @@ import { useState } from "react";
 
 const Navbar = () => {
   const navigate = useNavigate()
-  const [inputSearch, setInputSearch] = useState({
-    searching: "",
-  })
+  // const [inputSearch, setInputSearch] = useState({
+  //   searching: "",
+  // })
   const logStatus = localStorage.getItem("access_token")
   function logoutHandler() {
     localStorage.clear()
@@ -16,21 +16,23 @@ const Navbar = () => {
     navigate("/")
   }
 
-  const searchHandler = (e) => {
-    const value = e.target.value
-    const key = e.target.name
+  // const searchHandler = (e) => {
+  //   const value = e.target.value
+  //   const key = e.target.name
+  //   console.log(value, "<<<<,");
+  //   console.log(key, "<<<<,");
 
-    setInputSearch({
-      ...inputSearch,
-      [key]: value
-    })
-  }
+  //   setInputSearch({
+  //     ...inputSearch,
+  //     [key]: value
+  //   })
+  // }
 
-  const searchSubmitHandler = (e) => {
-    e.preventDefault()
+  // const searchSubmitHandler = (e) => {
+  //   e.preventDefault()
 
-    navigate(`${inputSearch}`)
-  }
+  //   navigate(`${inputSearch}`)
+  // }
 
   return (
     <>
@@ -44,7 +46,7 @@ const Navbar = () => {
           </Link>
         </div>
         {/* SEARCH */}
-        <div className="flex items-center justify-center flex-grow">
+        {/* <div className="flex items-center justify-center flex-grow">
           <form onSubmit={searchSubmitHandler} className="flex items-center space-x-2">
             <input
               type="search"
@@ -58,7 +60,7 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faSearch} className="w-5 mr-2" />
             </span>
           </form>
-        </div>
+        </div> */}
 
         {/* LINKS */}
         <div className="ml-auto flex items-center justify-center gap-4">
