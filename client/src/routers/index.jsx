@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         element: <LandingPage />
       },
       {
+        path: "/:query",
+        element: <LandingPage />
+      },
+      {
         path: "/petDetails/:id",
         element: <PetDetails />
       },
