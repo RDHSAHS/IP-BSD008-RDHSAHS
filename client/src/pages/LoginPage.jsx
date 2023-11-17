@@ -2,11 +2,10 @@ import axios from "axios"
 import { GoogleLogin } from "@react-oauth/google"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { URL, G_URL } from "../configs/config"
+import { URL } from "../configs/config"
 import Button from "../components/Button"
 
 const BASE_URL = URL
-const GOOGLE_URL = G_URL
 
 const LoginPage = () => {
   const [loginInput, setLoginInput] = useState({
@@ -60,7 +59,7 @@ const LoginPage = () => {
 
   async function googleLogin(codeResponse) {
     try {
-      const { data, status } = await axios.post(`${G_URL}/user/google-login`, null, {
+      const { data, status } = await axios.post(`${BASE_URL}/user/google-login`, null, {
         headers: {
           token: codeResponse.credential
         },
