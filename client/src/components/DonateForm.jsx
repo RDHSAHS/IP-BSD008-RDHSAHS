@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import axios from "axios"
-import Modal from "../components/ModalThanks"
 import ModalThanks from "../components/ModalThanks"
 
 const BASE_URL = "http://localhost:3000"
